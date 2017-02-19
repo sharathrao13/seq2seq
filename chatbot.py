@@ -22,7 +22,7 @@ vocab_path = './vocabulary_for_movies.txt'
 tf.app.flags.DEFINE_integer("batch_size", 64, "Batch size to use during training")
 tf.app.flags.DEFINE_integer("size", 256, "Size of each model layer")
 tf.app.flags.DEFINE_integer("num_layers", 2, "Number of layers in the model")
-tf.app.flags.DEFINE_integer("vocab_size", 10000, "Vocabulary size")
+tf.app.flags.DEFINE_integer("vocab_size", 7000, "Vocabulary size")
 tf.app.flags.DEFINE_boolean("use_lstm", False, "Use LSTM as cell")
 tf.app.flags.DEFINE_boolean("decode", False, "Set to True for interactive decoding")
 
@@ -35,7 +35,7 @@ learning_rate_decay = 0.99
 train_dir = "./"
 steps_per_checkpoint = 50
 gradients_clip = 5.0
-num_movie_scripts = 10
+num_movie_scripts = 2318
 
 
 # We use a number of buckets and pad to the closest one for efficiency.
@@ -79,7 +79,7 @@ def create_model(session, forward_only):
     model.saver.restore(session, ckpt.model_checkpoint_path)
   else:
     print("Created model with fresh parameters.")
-    prepros.make_files(num_movie_scripts,FLAGS.vocab_size)
+    #prepros.make_files(num_movie_scripts,FLAGS.vocab_size)
     session.run(tf.initialize_all_variables())
   return model
 
